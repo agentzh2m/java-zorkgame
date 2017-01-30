@@ -10,13 +10,13 @@
 
 2.2 Items
 -Weapon
-  - White Board Marker (2 dmg 85% accuracy)
+  - White Board Marker (2 dmg 100% accuracy)
     - action: stab
   - iPad (10 dmg 80% accuracy)
     - action: Islap
-  - Samsung Note 7 (20 dmg 100% accuracy)
+  - Samsung Note 7 (20 dmg 85% accuracy)
     - Sbomb
-  - Stapler Gun (5 dmg 85% accuracy)
+  - Stapler Gun (5 dmg 95% accuracy)
     - shoot
   - Water Gun (1 dmg 100% accuracy have 50% chance to double damage)
     - shoot
