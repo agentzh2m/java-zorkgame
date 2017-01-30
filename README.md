@@ -6,6 +6,7 @@
 * readme.txt is the same as README.md
 
 To Run
+
   1. `mvn package`
   2. `java -jar target/zorkgame-1.0-SNAPSHOT.jar`
 
