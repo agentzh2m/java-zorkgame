@@ -2,6 +2,7 @@ package io.muic.ooc;
 
 public class ConsumableItem extends Item{
     private int heal;
+    private int unit; //item can be stacked
 
     public int getHeal() {
         return heal;
@@ -10,4 +11,5 @@ public class ConsumableItem extends Item{
     public void setHeal(int heal) {
         this.heal = heal;
     }
+    public void use(Player player){player.increaseHealth(heal);}
 }

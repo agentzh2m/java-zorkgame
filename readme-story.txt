@@ -27,23 +27,22 @@
     - drink non-fat
   - Coke (+10HP) (if you drink coke zero previously +40HP)
     - drink
-  - Namthip Water (Revive potion plus +50HP if you use while alive you have 25% chance to die if not +100HP)
-    - holy drink
+  - Namthip Water (Potion +20HP have a 5% chance to die and 50% chance to regenerate to full health
 
 2.3 Characters
 *Enemy does not heal up except if the enemy have the heal skill
 - Player (can put their own name)
 - Enemy (Monster)
   - Mj (Lazer Eyes 15 dmg and Heal +10 HP to self, 100 HP )
-  - Bossy (hypnosis reduce 50% accuracy and slap 5 dmg, 100 HP) DropItem -> (IPad, Samsung Note 7, Stapler Gun)
+  - Bossy (hypnosis reduce 50% accuracy and slap 10 dmg, 100 HP) DropItem -> (IPad, Samsung Note 7, Stapler Gun)
   - John (Teleport move to neighbors blocks, Love Hit 10 dmg ,85 HP) DropItem -> (IPad, Samsung Note 7, Stapler Gun)
-  - Pj (Resurrection 50% chance to come back with 50% Health, Slap 5 dmg, 101 HP) DropItem -> (White Board Marker, (40%) Stapler Gun (40%), Other Weapon (20%))
+  - Pj (Resurrection 50% chance to come back with 50% Health, Slap 10 dmg, 101 HP) DropItem -> (White Board Marker, (40%) Stapler Gun (40%), Other Weapon (20%))
   - Ham Minion's (punch 5 dmg 10HP, 35HP) Drop -> (Consumable 35%, Nothing 60% , 5% Drop any weapon)
   - Tow Minion's (kick 7 dmg 12HP, 35HP) Drop -> (Consumable 50%, Nothing 40%, 10% Drop any weapon)
   - Sea and Ice (Need to rescue the couple from the power the darkness power of cs)
   - Possessed Ice (Last boss before rescuing sea )
 2.4 Constraints
-- A player can only hold a maximum number of 3 items.
+- A player can only hold a maximum number of 4 items.
 - A player have base Health Point (HP) of 100 points.
 - A monster is killed, you gain Experience by 0.1, so your attack will be more powerful by 1.1 times (rounded to closest integer).
 - if you kill a minion your exp gain is 0.5 kill a boss you gain 10 pts
