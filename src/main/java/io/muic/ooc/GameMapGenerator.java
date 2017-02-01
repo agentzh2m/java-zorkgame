@@ -20,7 +20,7 @@ public class GameMapGenerator {
                     for (int j = 0; j < random.nextInt(MONSTER_LIMIT); j++) {
                         rooms[i].addUnits(UnitFactory.getUnit("ham-minion"));
                     }
-                    for (int j = 0; j < ITEM_LIMIT; j++) {
+                    for (int j = 0; j < random.nextInt(ITEM_LIMIT); j++) {
                         rooms[i].addItem(ItemFactory.randomPotion());
                     }
                 }

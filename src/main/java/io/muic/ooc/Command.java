@@ -11,21 +11,26 @@ public class Command {
         System.out.println("monster in the room: " + GameMap.getInstance().getCurrentRoom().listUnits());
     }
     public static void take(String item){
-        List<Item> roomItems = GameMap.getInstance().getCurrentRoom().getItems();
-        Item takenItem = null;
-        for(Iterator<Item> itm = roomItems.iterator(); itm.hasNext(); ){
-            Item curItem = itm.next();
-            if(curItem.getName().equals(item)) {
-                roomItems.remove(curItem);
-                takenItem = curItem;
-                break;
+        if(GameMap.getInstance().getCurrentRoom().getUnits().size() == 0){
+            List<Item> roomItems = GameMap.getInstance().getCurrentRoom().getItems();
+            Item takenItem = null;
+            for(Iterator<Item> itm = roomItems.iterator(); itm.hasNext(); ){
+                Item curItem = itm.next();
+                if(curItem.getName().equals(item)) {
+                    roomItems.remove(curItem);
+                    takenItem = curItem;
+                    break;
+                }
             }
+            if(takenItem == null) System.out.println("Cannot find the item you wanted");
+            else {
+                Player.getInstance().pickItem(takenItem);
+                System.out.println("you have pick up " + takenItem.getName());
+            }
+        }else {
+            System.out.println("You need to beat all the monster to pick up item!!");
         }
-        if(takenItem == null) System.out.println("Cannot find the item you wanted");
-        else {
-            Player.getInstance().pickItem(takenItem);
-            System.out.println("you have pick up " + takenItem.getName());
-        }
+
     }
     public static void drop(String item){
         List<Item> playerItem = Player.getInstance().getItems();
@@ -65,8 +70,27 @@ public class Command {
     public static void go(Direction direction){
         GameMap.getInstance().move(direction);
     }
-    public static String attackWith(String weaponItem){
-        return "";
+    public static void attackWith(String weaponItem){
+        List<Item> playerItem = Player.getInstance().getItems();
+        Unit currentMonster = GameMap.getInstance().getCurrentRoom().getUnits().get(0);
+        WeaponItem playerWeapon = null;
+        for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
+            Item curItem = itm.next();
+            if(curItem.getName().equals(weaponItem) && curItem.getClass().getName().contains("weapon")){
+                playerWeapon = (WeaponItem) curItem;
+            }
+        }
+        Player.getInstance().attack(playerWeapon, currentMonster);
+        if(Player.getInstance().isDead()){
+            GameMap.getInstance().respawn();
+            System.out.println("You are dead respawn at half health at starting location");
+        }
+        currentMonster.attack(Player.getInstance());
+        if(currentMonster.isDead()){
+            System.out.println("Successfully kill " + currentMonster.getName());
+            GameMap.getInstance().getCurrentRoom().removeUnit(currentMonster);
+            currentMonster.dropItem();
+        }
     }
     public static void help() {
         String st =  "Available Commands: \n" +

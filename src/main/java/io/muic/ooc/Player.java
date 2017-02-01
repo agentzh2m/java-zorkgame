@@ -12,6 +12,7 @@ public class Player {
     private List<Item> items;
     private ConsumableItem latestItem;
     private final int MAX_ITEM_SLOT = 4;
+    private final int ATTACK_MULTIPLIER = 2;
 
     private Player() {
         this.experience = 0;
@@ -35,8 +36,9 @@ public class Player {
 
     }
 
-    public void attack(WeaponItem weaponItem){
-
+    public void attack(WeaponItem weaponItem, Unit monster){
+        int attackDmg = weaponItem.attack() + level*ATTACK_MULTIPLIER;
+        monster.decreaseHealth(attackDmg);
     }
 
     public void useItem(ConsumableItem consumableItem){
@@ -70,6 +72,15 @@ public class Player {
         this.health -= health;
 
     }
+
+    public boolean isDead(){
+        if(health <= 0) {
+            health = (int) (maxHealth/2);
+            return true;
+        }
+        else return false;
+    }
+
 
     public Item getLatestItem() {
         return latestItem;

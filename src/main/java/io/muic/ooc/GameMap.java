@@ -1,11 +1,10 @@
 package io.muic.ooc;
 
-import java.util.Arrays;
-
 public class GameMap {
     private Room[] rooms;
     private Room currentRoom;
     private GameMap gameMap;
+    private int startingRoom = 5;
     private static GameMap ourInstance = new GameMap();
 
     private GameMap() {
@@ -26,6 +25,9 @@ public class GameMap {
 
     }
 
+    public void respawn(){
+        currentRoom = rooms[startingRoom];
+    }
 
     public static GameMap getInstance() {return ourInstance;}
 
@@ -35,7 +37,7 @@ public class GameMap {
 
     public void loadLevelOne(){
         rooms = GameMapGenerator.generateLevelOne(rooms);
-        currentRoom = rooms[5];
+        currentRoom = rooms[startingRoom];
         System.out.println("Objective: \n" +
                 "For the first level you are surrounded by Ham's Minion his soul got capture by Majeed\n" +
                 "  and Majeed use Ham soul to generate minions to go and rescue you need to beat the poor old PJ the gate keeper that never die\n" +

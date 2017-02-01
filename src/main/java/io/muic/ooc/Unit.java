@@ -20,7 +20,7 @@ public abstract class Unit {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -53,6 +53,10 @@ public abstract class Unit {
     protected void setHealth(int health){
         this.health = health;
         this.maxHealth = health;
+    }
+
+    public boolean isDead(){
+        return health <= 0;
     }
 
     @Override
