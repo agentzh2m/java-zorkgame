@@ -25,32 +25,28 @@ public class Room {
     public void removeItem(Item item){items.remove(item);}
 
     public String listItems(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(Item item: items){stringBuilder.append(item.getName() + " ");}
-        return stringBuilder.toString();
+        return items.toString();
     }
 
     public void addUnits(Unit unit){units.add(unit);}
     public void removeUnit(Unit unit){units.remove(unit);}
     public String listUnits(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(Unit unit: units){stringBuilder.append(unit.getName() + " ");}
-        return stringBuilder.toString();
+       return units.toString();
     }
 
     private int getNorth(){
         int northIdx = idx - y;
-        if(northIdx > 0 && northIdx < x*y) return northIdx;
+        if(northIdx >= 0 && northIdx < x*y) return northIdx;
         else return -1;
     }
     private int getSouth(){
         int southIdx = idx + y;
-        if (southIdx > 0 && southIdx < x*y) return southIdx;
+        if (southIdx >= 0 && southIdx < x*y) return southIdx;
         else return -1;
     }
     private int getWest(){
         int westIdx = idx-1;
-        if(westIdx%x > 0 && westIdx < x*y) return westIdx;
+        if((idx%10) - 1 >= 0 && westIdx < x*y) return westIdx;
         else return -1;
     }
     private int getEast(){
@@ -61,10 +57,10 @@ public class Room {
 
     public boolean isMove(Direction direction){
         switch (direction){
-            case EAST: return getEast() > 0;
-            case SOUTH: return getSouth() > 0;
-            case WEST: return getWest() > 0;
-            case NORTH: return getNorth() > 0;
+            case EAST: return getEast() >= 0;
+            case SOUTH: return getSouth() >= 0;
+            case WEST: return getWest() >= 0;
+            case NORTH: return getNorth() >= 0;
             default: return false;
         }
     }
@@ -79,12 +75,12 @@ public class Room {
         }
     }
     public String listDirection(){
-        String validDirection = "";
-        if(getNorth() > 0) validDirection+= "North ";
-        if(getSouth() > 0) validDirection+= "South ";
-        if(getWest() > 0) validDirection+= "West ";
+        String validDirection = "[";
+        if(getNorth() > 0) validDirection+= "North, ";
+        if(getSouth() > 0) validDirection+= "South, ";
+        if(getWest() > 0) validDirection+= "West, ";
         if(getEast() > 0) validDirection+= "East ";
-        return validDirection;
+        return validDirection + "]";
     }
 
 }

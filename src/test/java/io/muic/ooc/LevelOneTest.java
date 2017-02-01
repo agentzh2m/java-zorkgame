@@ -6,6 +6,7 @@ public class LevelOneTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         GameMap.getInstance().loadLevelOne();
+        Player.getInstance();
     }
 
     public void testIsMove() throws Exception {
@@ -29,6 +30,28 @@ public class LevelOneTest extends TestCase {
         GameMap.getInstance().move(Direction.WEST);
         assertFalse(GameMap.getInstance().getCurrentRoom().isMove(Direction.WEST));
 
+    }
+
+    public void testIsMove3() throws Exception {
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.SOUTH);
+
+    }
+
+    public void testIsMove4() throws Exception {
+        GameMap.getInstance().move(Direction.WEST);
+        GameMap.getInstance().move(Direction.WEST);
+        GameMap.getInstance().move(Direction.WEST);
+        GameMap.getInstance().move(Direction.WEST);
+        assertTrue(GameMap.getInstance().getCurrentRoom().isMove(Direction.WEST));
+        GameMap.getInstance().move(Direction.WEST);
+        assertFalse(GameMap.getInstance().getCurrentRoom().isMove(Direction.WEST));
+    }
+
+    public void testInfo() throws Exception {
+        assertNotNull(Player.getInstance().getInfo());
     }
 
 

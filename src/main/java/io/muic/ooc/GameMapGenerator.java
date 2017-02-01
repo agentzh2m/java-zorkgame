@@ -26,7 +26,7 @@ public class GameMapGenerator {
                 }
             }
         }
-        int[] corners = {10, 91, 99};
+        int[] corners = {9, 90, 99};
         //add boss to a random corner
         rooms[corners[random.nextInt(corners.length)]].addUnits(UnitFactory.getUnit("pj"));
         return rooms;

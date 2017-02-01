@@ -16,8 +16,12 @@ public class GameMap {
         if (!currentRoom.isMove(direction)){
             System.out.println("Cannot go " + direction);
         }else {
-            currentRoom = rooms[currentRoom.getDirection(direction)];
-            System.out.println("Move to room " + currentRoom.getIdx());
+            if(rooms[currentRoom.getDirection(direction)] != null){
+                currentRoom = rooms[currentRoom.getDirection(direction)];
+                System.out.println("Move to room " + currentRoom.getIdx());
+            }else{
+                System.out.println("Cannot go " + direction + " you have hit a wall");
+            }
         }
 
     }

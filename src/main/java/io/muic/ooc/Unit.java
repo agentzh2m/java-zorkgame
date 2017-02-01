@@ -54,4 +54,9 @@ public abstract class Unit {
         this.health = health;
         this.maxHealth = health;
     }
+
+    @Override
+    public String toString(){
+        return getName();
+    }
 }

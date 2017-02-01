@@ -3,7 +3,9 @@ package io.muic.ooc;
 public class Command {
     public static void info(){
         System.out.println(Player.getInstance().getInfo());
-        System.out.println(GameMap.getInstance().getCurrentRoom().listDirection());
+        System.out.println("you can go: " + GameMap.getInstance().getCurrentRoom().listDirection());
+        System.out.println("item in the room: " + GameMap.getInstance().getCurrentRoom().listItems());
+        System.out.println("monster in the room: " + GameMap.getInstance().getCurrentRoom().listUnits());
     }
     public static String take(String item){
         return "";
