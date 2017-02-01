@@ -28,6 +28,14 @@ public class Room {
         return items.toString();
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
     public void addUnits(Unit unit){units.add(unit);}
     public void removeUnit(Unit unit){units.remove(unit);}
     public String listUnits(){

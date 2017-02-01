@@ -1,5 +1,8 @@
 package io.muic.ooc;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class Command {
     public static void info(){
         System.out.println(Player.getInstance().getInfo());
@@ -7,14 +10,57 @@ public class Command {
         System.out.println("item in the room: " + GameMap.getInstance().getCurrentRoom().listItems());
         System.out.println("monster in the room: " + GameMap.getInstance().getCurrentRoom().listUnits());
     }
-    public static String take(String item){
-        return "";
+    public static void take(String item){
+        List<Item> roomItems = GameMap.getInstance().getCurrentRoom().getItems();
+        Item takenItem = null;
+        for(Iterator<Item> itm = roomItems.iterator(); itm.hasNext(); ){
+            Item curItem = itm.next();
+            if(curItem.getName().equals(item)) {
+                roomItems.remove(curItem);
+                takenItem = curItem;
+                break;
+            }
+        }
+        if(takenItem == null) System.out.println("Cannot find the item you wanted");
+        else {
+            Player.getInstance().pickItem(takenItem);
+            System.out.println("you have pick up " + takenItem.getName());
+        }
     }
-    public static String drop(String item){
-        return "";
+    public static void drop(String item){
+        List<Item> playerItem = Player.getInstance().getItems();
+        Item droppingItem = null;
+        for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
+            Item curItem = itm.next();
+            if(curItem.getName().equals(item)){
+                playerItem.remove(curItem);
+                droppingItem = curItem;
+                break;
+            }
+        }
+        if(droppingItem == null) System.out.println("You don't have this item in your inventory");
+        else {
+            GameMap.getInstance().getCurrentRoom().addItem(droppingItem);
+            System.out.println("you have drop " + droppingItem.getName());
+        }
     }
-    public static String use(String consumableItem){
-        return "";
+    public static void use(String consumableItem){
+        List<Item> playerItem = Player.getInstance().getItems();
+        Item usingItem = null;
+        for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
+            Item curItem = itm.next();
+            if(curItem.getName().equals(consumableItem) && curItem.getClass().getName().contains("potion")){
+                playerItem.remove(curItem);
+                usingItem = curItem;
+                break;
+            }
+        }
+        if(usingItem == null) System.out.println("you don't have this item in your inventory");
+        else{
+            ConsumableItem conItem = (ConsumableItem) usingItem;
+            conItem.use(Player.getInstance());
+            System.out.println("you use " + conItem.getName());
+        }
     }
     public static void go(Direction direction){
         GameMap.getInstance().move(direction);

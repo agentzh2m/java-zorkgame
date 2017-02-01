@@ -13,7 +13,10 @@ public class Coke extends ConsumableItem{
 
     @Override
     public void use(Player player) {
-        if(player.getLatestItem().getName().equals("Coke Zero"))player.increaseHealth(40);
-        else super.use(player);
+        if(player.getLatestItem() != null){
+            if(player.getLatestItem().getName().equals("Coke Zero"))player.increaseHealth(40);
+        }else{
+            super.use(player);
+        }
     }
 }

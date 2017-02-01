@@ -36,6 +36,10 @@ public class GameMap {
     public void loadLevelOne(){
         rooms = GameMapGenerator.generateLevelOne(rooms);
         currentRoom = rooms[5];
+        System.out.println("Objective: \n" +
+                "For the first level you are surrounded by Ham's Minion his soul got capture by Majeed\n" +
+                "  and Majeed use Ham soul to generate minions to go and rescue you need to beat the poor old PJ the gate keeper that never die\n" +
+                "  you will be teleported to the next level immediately");
 
     }
     public void loadLevelTwo(){

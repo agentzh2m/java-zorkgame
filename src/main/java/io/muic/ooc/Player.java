@@ -30,7 +30,7 @@ public class Player {
     public String getInfo(){
         String hp = "HP: " + health+ "/" + maxHealth;
         String exp = "EXP: " +experience+"/"+getBaseExp();
-        String items = "Bag " + this.items.toString();
+        String items = "Bag: " + this.items.toString();
         return hp + "\n" + exp + "\n" + items;
 
     }
@@ -62,7 +62,7 @@ public class Player {
     }
 
     public void increaseHealth(int health) {
-        if(health >= maxHealth) this.health = maxHealth;
+        if(this.health + health >= maxHealth) this.health = maxHealth;
         else this.health += health;
     }
 
@@ -88,4 +88,7 @@ public class Player {
         }
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
 }

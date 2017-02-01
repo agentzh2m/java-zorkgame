@@ -13,20 +13,27 @@ public class CommandLineParser  {
                     System.out.println("Invalid Command");
             }
 
-        }else if(stringTok.length == 2){
+        }else{
             switch (stringTok[0]){
-                case "take": Command.take(stringTok[1]);break;
-                case "drop": Command.drop(stringTok[1]);break;
-                case "use": Command.use(stringTok[1]);break;
+                case "take": Command.take(parseArg(stringTok));break;
+                case "drop": Command.drop(parseArg(stringTok));break;
+                case "use": Command.use(parseArg(stringTok));break;
                 case "go": Command.go(parseDirection(stringTok[1]));break;
+                case "attack":
+                    System.out.println("I dunno what to do");
                 default:
                     System.out.println("Invalid Command");
             }
-        }else if(stringTok.length == 3){
-            if(stringTok[0].equals("attack") && stringTok[1].equals("with")){
-                Command.attackWith(stringTok[3]);
-            }
         }
+    }
+
+    public String parseArg(String[] stringTok){
+        String args = "";
+        for(int i = 1; i < stringTok.length; i++){
+            if(i == stringTok.length - 1) args += stringTok[i];
+            else args += stringTok[i] + " ";
+        }
+        return args;
     }
 
     public Direction parseDirection(String direction){

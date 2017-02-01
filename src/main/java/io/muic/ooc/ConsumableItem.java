@@ -2,7 +2,6 @@ package io.muic.ooc;
 
 public class ConsumableItem extends Item{
     private int heal;
-    private int unit; //item can be stacked
 
     public int getHeal() {
         return heal;
