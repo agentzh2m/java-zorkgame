@@ -1,5 +1,7 @@
 package io.muic.ooc;
 
+import java.util.Random;
+
 public abstract class Unit {
 
     private String name;
@@ -9,6 +11,7 @@ public abstract class Unit {
     private int attackScore;
     private int health;
     private int maxHealth;
+    protected final Random random = new Random();
 
     public abstract void attack(Player player);
     public abstract Item dropItem();
@@ -25,21 +28,30 @@ public abstract class Unit {
         return attackScore;
     }
 
-    public void setAttackScore(int attackScore) {
+    protected void setAttackScore(int attackScore) {
         this.attackScore = attackScore;
     }
 
-    public void increaseHealth(int health) {
+    protected void increaseHealth(int health) {
         if(health >= maxHealth) this.health = maxHealth;
         else this.health += health;
     }
 
     public void decreaseHealth(int health){
-        this.health -= health;
+        if(this.health <= 0) this.health = 0;
+        else this.health -= health;
+    }
 
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     public int getHealth(){
         return health;
+    }
+
+    protected void setHealth(int health){
+        this.health = health;
+        this.maxHealth = health;
     }
 }

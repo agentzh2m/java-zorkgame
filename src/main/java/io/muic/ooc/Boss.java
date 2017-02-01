@@ -3,18 +3,15 @@ package io.muic.ooc;
 import java.util.Random;
 
 public abstract class Boss extends Unit {
+    private final double ATTACK_CHANCE = 0.6;
+    private final double ATTACK_REDUCE = 0.9;
     @Override
     public void attack(Player player) {
-        double prob = new Random().nextDouble();
-        int dmg = 0;
-        if(prob <= 0.25){
-            dmg = (int) (getAttackScore()*0.8);
-        }else if(prob > 0.25 && prob < 0.75){
-            dmg = (int) (getAttackScore()*0.9);
+        if(random.nextDouble() < ATTACK_CHANCE){
+            player.decreaseHealth((int) (super.getAttackScore() * ATTACK_REDUCE));
         }else{
-            dmg = getAttackScore();
+            player.decreaseHealth(super.getAttackScore());
         }
-        player.decreaseHealth(dmg);
     }
 
 }

@@ -6,8 +6,10 @@ import io.muic.ooc.weapon.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ItemFactory {
+    private final static Random random = new Random();
     public final static List<String> allPotions =
             new ArrayList<>(Arrays.asList("coke", "coke-light", "coke-zero", "namthip"));
     public final static List<String> allWeapons =
@@ -30,6 +32,10 @@ public class ItemFactory {
         for(String potion: allPotions)
             potions.add(getPotion(potion));
         return potions;
+    }
+
+    public static ConsumableItem randomPotion(){
+        return getPotion(allPotions.get(random.nextInt(allPotions.size())));
     }
 
     public static WeaponItem getWeapon(String weapon){

@@ -6,5 +6,6 @@ public class HamMinion extends Minion {
     public HamMinion() {
         setName("Ham Minion's");
         setAttackScore(5);
+        setHealth(35);
     }
 }

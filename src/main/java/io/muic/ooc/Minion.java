@@ -1,38 +1,33 @@
 package io.muic.ooc;
 
-import java.util.Random;
 
 public class Minion extends Unit {
-    public Minion() {
 
-    }
+    private final double POTION_DROP_RATE = 0.35;
+    private final double WEAPON_DROP_RATE = 0.05;
+    private final double ATTACK_CHANCE = 0.5;
+    private final double ATTACK_REDUCE = 0.8;
+
 
     @Override
     public void attack(Player player) {
-        double prob = new Random().nextDouble();
-        int dmg = 0;
-        if(prob <= 0.25){
-            dmg = (int) (getAttackScore()*0.65);
-        }else if(prob > 0.25 && prob < 0.75){
-            dmg = (int) (getAttackScore()*0.85);
+        if(random.nextDouble() <= ATTACK_CHANCE){
+            player.decreaseHealth((int) (super.getAttackScore() * ATTACK_REDUCE));
         }else{
-            dmg = getAttackScore();
+            player.decreaseHealth(super.getAttackScore());
         }
-        player.decreaseHealth(dmg);
     }
 
     @Override
     public Item dropItem() {
-        Random random = new Random();
-        double prob = random.nextDouble();
-        if (prob <= 0.35){
+        if (random.nextDouble() <= POTION_DROP_RATE) {
             String potionString = ItemFactory.allPotions.get(random.nextInt(ItemFactory.allPotions.size()));
             return ItemFactory.getPotion(potionString);
-        }else if (prob > 0.35 && prob <= 0.4 ){
+        }
+        if (random.nextDouble() <= WEAPON_DROP_RATE){
             String weaponString = ItemFactory.allWeapons.get(random.nextInt(ItemFactory.allWeapons.size()));
             return ItemFactory.getWeapon(weaponString);
-        }else{
-            return null;
         }
+        return null;
     }
 }

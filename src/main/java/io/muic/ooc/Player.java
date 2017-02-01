@@ -11,6 +11,7 @@ public class Player {
     private int maxHealth;
     private List<Item> items;
     private ConsumableItem latestItem;
+    private final int MAX_ITEM_SLOT = 4;
 
     private Player() {
         this.experience = 0;
@@ -24,6 +25,14 @@ public class Player {
 
     public static Player getInstance() {
         return ourInstance;
+    }
+
+    public String getInfo(){
+        String hp = "HP: " + health+ "/" + maxHealth;
+        String exp = "EXP: " +experience+"/"+getBaseExp();
+        String items = "Bag " + this.items.toString();
+        return hp + "\n" + exp + "\n" + items;
+
     }
 
     public void attack(WeaponItem weaponItem){
@@ -41,7 +50,7 @@ public class Player {
     }
 
     public void pickItem(Item item){
-        if(items.size() < 4) items.add(item);
+        if(items.size() < MAX_ITEM_SLOT) items.add(item);
         else System.out.println("Your item slot is full you can drop something");
     }
     public void go(String direction){
@@ -66,11 +75,14 @@ public class Player {
         return latestItem;
     }
 
+    public int getBaseExp(){
+        return level * BASE_EXP;
+    }
+
     public void increaseExperience(int experience){
-        int baseExp = level * BASE_EXP;
-        if(this.experience + experience >= baseExp){
+        if(this.experience + experience >= getBaseExp()){
             level++;
-            this.experience = baseExp - (this.experience + experience);
+            this.experience = getBaseExp() - (this.experience + experience);
         }else{
             this.experience += experience;
         }
