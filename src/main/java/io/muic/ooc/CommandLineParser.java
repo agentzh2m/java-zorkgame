@@ -1,35 +1,40 @@
 package io.muic.ooc;
 
 public class CommandLineParser  {
+    private final Command command = new Command();
 
     public void parse(String string){
         String[] stringTok = string.split(" ");
         if(stringTok.length == 1){
             switch (stringTok[0]){
-                case "info": Command.info(); break;
-                case "help": Command.help(); break;
-                case "quit": Command.quit(); break;
+                case "info": command.info(); break;
+                case "help": command.help(); break;
+                case "quit": command.quit(); break;
                 default:
                     System.out.println("Invalid Command");
             }
 
         }else{
             switch (stringTok[0]){
-                case "take": Command.take(parseArg(stringTok));break;
-                case "drop": Command.drop(parseArg(stringTok));break;
-                case "use": Command.use(parseArg(stringTok));break;
-                case "go": Command.go(parseDirection(stringTok[1]));break;
-                case "attack":
-                    System.out.println("I dunno what to do");
+                case "take": command.take(parseArg(stringTok, 1));break;
+                case "drop": command.drop(parseArg(stringTok, 1));break;
+                case "use": command.use(parseArg(stringTok, 1));break;
+                case "go": command.go(parseDirection(stringTok[1]));break;
+                case "attack": {
+                    if(stringTok[1].equals("with")){
+                        command.attackWith(parseArg(stringTok, 2));
+                        break;
+                    }
+                }
                 default:
                     System.out.println("Invalid Command");
             }
         }
     }
 
-    public String parseArg(String[] stringTok){
+    public String parseArg(String[] stringTok, int iargs){
         String args = "";
-        for(int i = 1; i < stringTok.length; i++){
+        for(int i = iargs; i < stringTok.length; i++){
             if(i == stringTok.length - 1) args += stringTok[i];
             else args += stringTok[i] + " ";
         }

@@ -7,7 +7,7 @@ public abstract class Unit {
     private String name;
     private String action;
     private String description;
-    private int giveExp;
+    private int Exp;
     private int attackScore;
     private int health;
     private int maxHealth;
@@ -30,6 +30,14 @@ public abstract class Unit {
 
     protected void setAttackScore(int attackScore) {
         this.attackScore = attackScore;
+    }
+
+    public int getExp() {
+        return Exp;
+    }
+
+    public void setExp(int exp) {
+        Exp = exp;
     }
 
     protected void increaseHealth(int health) {
@@ -56,7 +64,17 @@ public abstract class Unit {
     }
 
     public boolean isDead(){
-        return health <= 0;
+        if(health <= 0){
+            Player.getInstance().increaseExperience(getExp());
+            return true;
+        }
+        return false;
+    }
+
+    public String getInfo(){
+        String hp = "HP: " + health+ "/" + maxHealth;
+        String name = "Fighting against: " + getName();
+        return name + "\n" + hp;
     }
 
     @Override

@@ -39,6 +39,7 @@ public class Player {
     public void attack(WeaponItem weaponItem, Unit monster){
         int attackDmg = weaponItem.attack() + level*ATTACK_MULTIPLIER;
         monster.decreaseHealth(attackDmg);
+        System.out.println("You attack with " + attackDmg);
     }
 
     public void useItem(ConsumableItem consumableItem){

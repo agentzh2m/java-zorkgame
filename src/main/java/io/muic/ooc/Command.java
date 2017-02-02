@@ -4,13 +4,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Command {
-    public static void info(){
+    public void info(){
         System.out.println(Player.getInstance().getInfo());
         System.out.println("you can go: " + GameMap.getInstance().getCurrentRoom().listDirection());
         System.out.println("item in the room: " + GameMap.getInstance().getCurrentRoom().listItems());
         System.out.println("monster in the room: " + GameMap.getInstance().getCurrentRoom().listUnits());
+        if(GameMap.getInstance().getCurrentRoom().getUnits().size() > 0)
+            System.out.println(GameMap.getInstance().getCurrentRoom().getUnits().get(0).getInfo());
     }
-    public static void take(String item){
+    public void take(String item){
         if(GameMap.getInstance().getCurrentRoom().getUnits().size() == 0){
             List<Item> roomItems = GameMap.getInstance().getCurrentRoom().getItems();
             Item takenItem = null;
@@ -32,7 +34,7 @@ public class Command {
         }
 
     }
-    public static void drop(String item){
+    public void drop(String item){
         List<Item> playerItem = Player.getInstance().getItems();
         Item droppingItem = null;
         for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
@@ -49,7 +51,7 @@ public class Command {
             System.out.println("you have drop " + droppingItem.getName());
         }
     }
-    public static void use(String consumableItem){
+    public void use(String consumableItem){
         List<Item> playerItem = Player.getInstance().getItems();
         Item usingItem = null;
         for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
@@ -67,11 +69,15 @@ public class Command {
             System.out.println("you use " + conItem.getName());
         }
     }
-    public static void go(Direction direction){
+    public void go(Direction direction){
         GameMap.getInstance().move(direction);
     }
-    public static void attackWith(String weaponItem){
+    public void attackWith(String weaponItem){
         List<Item> playerItem = Player.getInstance().getItems();
+        if(GameMap.getInstance().getCurrentRoom().getUnits().size() == 0){
+            System.out.println("There are no monster that you can attack");
+            return;
+        }
         Unit currentMonster = GameMap.getInstance().getCurrentRoom().getUnits().get(0);
         WeaponItem playerWeapon = null;
         for(Iterator<Item> itm = playerItem.iterator(); itm.hasNext();){
@@ -80,19 +86,23 @@ public class Command {
                 playerWeapon = (WeaponItem) curItem;
             }
         }
-        Player.getInstance().attack(playerWeapon, currentMonster);
-        if(Player.getInstance().isDead()){
-            GameMap.getInstance().respawn();
-            System.out.println("You are dead respawn at half health at starting location");
-        }
-        currentMonster.attack(Player.getInstance());
-        if(currentMonster.isDead()){
-            System.out.println("Successfully kill " + currentMonster.getName());
-            GameMap.getInstance().getCurrentRoom().removeUnit(currentMonster);
-            currentMonster.dropItem();
+        if(playerWeapon != null){
+            Player.getInstance().attack(playerWeapon, currentMonster);
+            if(Player.getInstance().isDead()){
+                System.out.println("You are dead respawn at half health at starting location");
+                GameMap.getInstance().respawn();
+            }
+            currentMonster.attack(Player.getInstance());
+            if(currentMonster.isDead()){
+                System.out.println("Successfully kill " + currentMonster.getName());
+                GameMap.getInstance().getCurrentRoom().removeUnit(currentMonster);
+                currentMonster.dropItem();
+            }
+        }else {
+            System.out.println("You don't have this weapon or invalid weapon name");
         }
     }
-    public static void help() {
+    public void help() {
         String st =  "Available Commands: \n" +
                 "info - the current status of the game \n" +
                 "take - type in the item name that you want to pick up\n" +
@@ -103,7 +113,7 @@ public class Command {
                 "quit - exit the game however you will lose all of your progress";
         System.out.println(st);
     }
-    public static void quit(){
+    public void quit(){
         System.out.println("Bye Bye don't give up!");
         System.exit(0);
     }

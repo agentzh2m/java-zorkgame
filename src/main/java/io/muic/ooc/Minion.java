@@ -15,6 +15,7 @@ public class Minion extends Unit {
             player.decreaseHealth((int) (super.getAttackScore() * ATTACK_REDUCE));
         }else{
             player.decreaseHealth(super.getAttackScore());
+            System.out.println("your health decrease by " + super.getAttackScore());
         }
     }
 
@@ -22,10 +23,12 @@ public class Minion extends Unit {
     public Item dropItem() {
         if (random.nextDouble() <= POTION_DROP_RATE) {
             String potionString = ItemFactory.allPotions.get(random.nextInt(ItemFactory.allPotions.size()));
+            System.out.println("The monster drop " + potionString);
             return ItemFactory.getPotion(potionString);
         }
         if (random.nextDouble() <= WEAPON_DROP_RATE){
             String weaponString = ItemFactory.allWeapons.get(random.nextInt(ItemFactory.allWeapons.size()));
+            System.out.println("The monster drop " + weaponString);
             return ItemFactory.getWeapon(weaponString);
         }
         return null;

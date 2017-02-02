@@ -1,6 +1,7 @@
 package io.muic.ooc.units;
 
 import io.muic.ooc.Boss;
+import io.muic.ooc.GameMap;
 import io.muic.ooc.Item;
 
 
@@ -15,6 +16,7 @@ public class Pj extends Boss {
         setName("Pankaj Ahuja (PJ)");
         setAttackScore(10);
         setHealth(101);
+        setExp(20);
     }
 
     /**
@@ -32,5 +34,14 @@ public class Pj extends Boss {
         }else{
             super.decreaseHealth(health);
         }
+    }
+
+    @Override
+    public boolean isDead() {
+        boolean deadStatus = super.isDead();
+        if(deadStatus){
+            GameMap.getInstance().loadLevelTwo();
+        }
+        return deadStatus;
     }
 }

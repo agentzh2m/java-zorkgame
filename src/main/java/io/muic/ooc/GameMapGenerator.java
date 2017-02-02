@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class GameMapGenerator {
     private final static Random random = new Random();
-    private final static double MONSTER_PROBABILITY = 0.5;
+    private final static double MONSTER_PROBABILITY = 0.75;
     private final static int MONSTER_LIMIT = 3;
     private final static int ITEM_LIMIT = 3;
-    public static Room[] generateLevelOne(Room[] rooms){
+    public Room[] generateLevelOne(Room[] rooms){
         final int X = 10;
         final int Y = 10;
         rooms = new Room[X*Y];
@@ -32,10 +32,10 @@ public class GameMapGenerator {
         return rooms;
 
     }
-    public static void generateLevelTwo(Room[] rooms){
+    public void generateLevelTwo(Room[] rooms){
         rooms = new Room[15*15];
     }
-    public static void generateLevelThree(Room[] rooms){
+    public void generateLevelThree(Room[] rooms){
         rooms = new Room[20*20];
     }
 }

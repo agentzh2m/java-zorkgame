@@ -36,8 +36,10 @@ public class GameMap {
     }
 
     public void loadLevelOne(){
-        rooms = GameMapGenerator.generateLevelOne(rooms);
+        GameMapGenerator gameMapGenerator = new GameMapGenerator();
+        rooms = gameMapGenerator.generateLevelOne(rooms);
         currentRoom = rooms[startingRoom];
+        Player.getInstance().pickItem(ItemFactory.getWeapon("water-gun"));
         System.out.println("Objective: \n" +
                 "For the first level you are surrounded by Ham's Minion his soul got capture by Majeed\n" +
                 "  and Majeed use Ham soul to generate minions to go and rescue you need to beat the poor old PJ the gate keeper that never die\n" +
