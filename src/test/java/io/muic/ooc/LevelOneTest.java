@@ -38,6 +38,7 @@ public class LevelOneTest extends TestCase {
         GameMap.getInstance().move(Direction.SOUTH);
         GameMap.getInstance().move(Direction.SOUTH);
         GameMap.getInstance().move(Direction.SOUTH);
+        assertNotNull(GameMap.getInstance().getCurrentRoom());
 
     }
 
@@ -56,6 +57,7 @@ public class LevelOneTest extends TestCase {
         GameMap.getInstance().move(Direction.SOUTH);
         GameMap.getInstance().move(Direction.SOUTH);
         GameMap.getInstance().move(Direction.WEST);
+        assertNotNull(GameMap.getInstance().getCurrentRoom());
     }
 
     public void testInfo() throws Exception {

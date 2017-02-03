@@ -7,13 +7,22 @@ public class GameMapGeneratorTest extends TestCase {
         Room[] rooms = null;
         GameMapGenerator gameMapGenerator = new GameMapGenerator();
         rooms = gameMapGenerator.generateLevelOne();
+        assertNotNull(rooms);
     }
 
     public void testGenerateLevelTwo() throws Exception {
         Room[] rooms = null;
         GameMapGenerator gameMapGenerator = new GameMapGenerator();
         rooms = gameMapGenerator.generateLevelTwo();
+        assertNotNull(rooms);
 
+    }
+
+    public void testGenerateLevelThree() throws Exception {
+        Room[] rooms = null;
+        GameMapGenerator gameMapGenerator = new GameMapGenerator();
+        rooms = gameMapGenerator.generateLevelThree();
+        assertNotNull(rooms);
     }
 
 }
