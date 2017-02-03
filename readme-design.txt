@@ -36,7 +36,7 @@ Interface Logic:
   3. The actual command is it own class that implement the command interface
 
 We decide to use the Command Design pattern because there are a lots of command to progress this help
-break down the logic of the different command. 
+break down the logic of the different command.
 
 This class is separate from the main game logic this help to encapsulate the problem if there is a problem
 with the parser it will not affect the game at all since the command line is the interface the user use to

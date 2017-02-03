@@ -3,13 +3,14 @@ package io.muic.ooc.units;
 import io.muic.ooc.Boss;
 import io.muic.ooc.GameMap;
 import io.muic.ooc.Item;
+import io.muic.ooc.ItemFactory;
 
 
 public class Pj extends Boss {
 
     @Override
-    public Item dropItem() {
-        return null;
+    public void dropItem() {
+        GameMap.getInstance().getCurrentRoom().addItem(ItemFactory.randomWeapon());
     }
 
     public Pj() {

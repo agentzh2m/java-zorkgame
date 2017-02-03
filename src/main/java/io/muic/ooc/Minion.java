@@ -20,17 +20,16 @@ public class Minion extends Unit {
     }
 
     @Override
-    public Item dropItem() {
+    public void dropItem() {
         if (random.nextDouble() <= POTION_DROP_RATE) {
             String potionString = ItemFactory.allPotions.get(random.nextInt(ItemFactory.allPotions.size()));
             System.out.println("The monster drop " + potionString);
-            return ItemFactory.getPotion(potionString);
+            GameMap.getInstance().getCurrentRoom().addItem(ItemFactory.getPotion(potionString));
         }
         if (random.nextDouble() <= WEAPON_DROP_RATE){
             String weaponString = ItemFactory.allWeapons.get(random.nextInt(ItemFactory.allWeapons.size()));
             System.out.println("The monster drop " + weaponString);
-            return ItemFactory.getWeapon(weaponString);
+            GameMap.getInstance().getCurrentRoom().addItem(ItemFactory.getWeapon(weaponString));
         }
-        return null;
     }
 }

@@ -1,6 +1,10 @@
 package io.muic.ooc;
 
+import org.fusesource.jansi.Ansi;
+
 import java.util.Random;
+
+import static org.fusesource.jansi.Ansi.ansi;
 
 public class GameMap {
     private Room[] rooms;
@@ -51,7 +55,7 @@ public class GameMap {
         rooms = gameMapGenerator.generateLevelOne();
         currentRoom = rooms[startingRoom];
         Player.getInstance().pickItem(ItemFactory.getWeapon("water-gun"));
-        System.out.println("Objective: \n" +
+        printer("Objective: \n" +
                 "For the first level you are surrounded by Ham's Minion his soul got capture by Majeed\n" +
                 "and Majeed use Ham soul to generate minions to go and rescue you need to beat the poor old PJ the gate keeper that never die\n" +
                 "you will be teleported to the next level immediately");
@@ -62,12 +66,19 @@ public class GameMap {
         GameMapGenerator gameMapGenerator = new GameMapGenerator();
         rooms = gameMapGenerator.generateLevelTwo();
         currentRoom = rooms[startingRoom];
-        System.out.println("Objective: \n" +
+        printer("Objective: \n" +
                 "Beat Bossy and pTow to move to the next level");
 
     }
     public void loadLevelThree(){
+        GameMapGenerator gameMapGenerator = new GameMapGenerator();
+        rooms = gameMapGenerator.generateLevelThree();
 
+
+    }
+
+    private void printer(String st){
+        System.out.println(ansi().bg(Ansi.Color.WHITE).fg(Ansi.Color.BLACK).a(st).reset());
     }
 
 }

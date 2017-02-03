@@ -12,7 +12,7 @@ public class Mj extends Boss {
     }
 
     @Override
-    public Item dropItem() {
+    public void dropItem() {
         System.out.println("You win the game made by Hamuel");
         System.out.println("Exiting in 3 seconds");
         try {
@@ -21,6 +21,5 @@ public class Mj extends Boss {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
     }
 }

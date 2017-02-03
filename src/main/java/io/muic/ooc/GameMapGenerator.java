@@ -60,7 +60,7 @@ public class GameMapGenerator {
         rooms[corners[randomJohn]].addUnits(UnitFactory.getUnit("johny"));
         return rooms;
     }
-    public static Room[] generateLevelThree(){
+    public Room[] generateLevelThree(){
         final int X = 10;
         final int Y = 10;
         Room[] rooms = new Room[X*Y];

@@ -51,6 +51,13 @@ public class LevelOneTest extends TestCase {
         assertFalse(GameMap.getInstance().getCurrentRoom().isMove(Direction.WEST));
     }
 
+    public void testIsMove5() throws Exception {
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.SOUTH);
+        GameMap.getInstance().move(Direction.WEST);
+    }
+
     public void testInfo() throws Exception {
         assertNotNull(Player.getInstance().getInfo());
     }

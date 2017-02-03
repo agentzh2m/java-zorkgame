@@ -11,13 +11,13 @@ public class PossessedIce extends Boss {
     }
 
     @Override
-    public Item dropItem() {
+    public void dropItem() {
         Room[] rooms = GameMap.getInstance().getRooms();
         int[] corners = {9, 90, 99};
         //add boss to a random corner
         int randomCornerIndex = random.nextInt(corners.length);
         rooms[randomCornerIndex].addUnits(new Mj());
         System.out.println("Mj appear at room " + randomCornerIndex);
-        return ItemFactory.randomWeapon();
+        GameMap.getInstance().getCurrentRoom().addItem(ItemFactory.randomWeapon());
     }
 }

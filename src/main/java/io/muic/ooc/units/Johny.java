@@ -11,8 +11,8 @@ public class Johny extends Boss {
     }
 
     @Override
-    public Item dropItem() {
-        return ItemFactory.randomWeapon();
+    public void dropItem() {
+        GameMap.getInstance().getCurrentRoom().addItem(ItemFactory.randomWeapon());
     }
 
     @Override

@@ -5,7 +5,8 @@ import io.muic.ooc.GameMap;
 
 public class Go implements Command{
     public void apply(String direction){
-        GameMap.getInstance().move(parseDirection(direction));
+        if(parseDirection(direction) != null) GameMap.getInstance().move(parseDirection(direction));
+        else System.out.println("Invalid command");
     }
 
     public Direction parseDirection(String direction){

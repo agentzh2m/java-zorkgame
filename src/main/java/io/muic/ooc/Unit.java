@@ -14,7 +14,7 @@ public abstract class Unit {
     protected final Random random = ZorkGame.random;
 
     public abstract void attack(Player player);
-    public abstract Item dropItem();
+    public abstract void dropItem();
 
     public String getName() {
         return name;

@@ -29,6 +29,8 @@ Playing the MUIC Zork Game
 - The monster will only attack you when you attack them
 - You can only kill the monster according to the queue you cannot choose the unit you want to kill first
 - You can only pick the items in the room if there is no enemy left otherwise you need to kill them all first
+- If you die you will respawn at your initial starting location
+- Some items can kill you read the item description at game-story
 
 
 2.3 Object Properties
@@ -39,4 +41,4 @@ Enemy
     -HP
     The Boss have special skills
 Weapon-Item
-    -Special skill and ability 
+    -Special skill and ability
