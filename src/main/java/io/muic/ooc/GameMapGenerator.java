@@ -59,7 +59,31 @@ public class GameMapGenerator {
         rooms[corners[randomJohn]].addUnits(UnitFactory.getUnit("johny"));
         return rooms;
     }
-    public static void generateLevelThree(Room[] rooms){
-        rooms = new Room[20*20];
+    public static Room[] generateLevelThree(){
+        final int X = 10;
+        final int Y = 10;
+        Room[] rooms = new Room[X*Y];
+        for(int i = 0; i < X*Y; i++){
+            if(i > 42 && i < 77 && i%X > 2 && i%X < 7){
+                rooms[i] = null; //creating a wall not trump wall
+            }else{
+                rooms[i] = new Room(X,Y,i);
+                if(random.nextDouble() <= MONSTER_PROBABILITY){
+                    for (int j = 0; j < random.nextInt(MONSTER_LIMIT); j++) {
+                        rooms[i].addUnits(UnitFactory.getUnit("tow-minion"));
+                        rooms[i].addUnits(UnitFactory.getUnit("pj"));
+                    }
+                    for (int j = 0; j < random.nextInt(ITEM_LIMIT); j++) {
+                        rooms[i].addItem(ItemFactory.randomPotion());
+                    }
+                }
+            }
+        }
+        int[] corners = {9, 90, 99};
+        //add boss to a random corner
+        int randomCornerIndex = random.nextInt(corners.length);
+        rooms[corners[randomCornerIndex]].addUnits(UnitFactory.getUnit("possessed-ice"));
+//        System.out.println("FOR DEV purposes// BOSS ROOM: " + corners[randomCornerIndex]);
+        return rooms;
     }
 }

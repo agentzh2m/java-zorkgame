@@ -12,7 +12,7 @@ public class CommandLineParser  {
             switch (stringTok[0]){
                 case "info": CommandFactory.getCommand("info").apply(null); break;
                 case "help": CommandFactory.getCommand("help").apply(null); break;
-                case "quit": CommandFactory.getCommand("quit"); break;
+                case "quit": CommandFactory.getCommand("quit").apply(null); break;
                 default:
                     System.out.println("Invalid Command");
             }

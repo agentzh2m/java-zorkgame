@@ -7,11 +7,13 @@ public class CommandFactory {
         {
             put("go", new Go());
             put("attack with", new AttackWith());
+            put("info", new Info());
             put("quit", new Quit());
             put("help", new Help());
             put("take", new Take());
             put("use", new Use());
             put("drop", new Drop());
+            put("quit",new Quit());
         }
     };
 

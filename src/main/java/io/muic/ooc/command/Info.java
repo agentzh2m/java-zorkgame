@@ -3,8 +3,8 @@ package io.muic.ooc.command;
 import io.muic.ooc.GameMap;
 import io.muic.ooc.Player;
 
-public class Info {
-    public void info(){
+public class Info implements Command{
+    public void apply(String args){
         System.out.println(Player.getInstance().getInfo());
         System.out.println("you can go: " + GameMap.getInstance().getCurrentRoom().listDirection());
         System.out.println("item in the room: " + GameMap.getInstance().getCurrentRoom().listItems());

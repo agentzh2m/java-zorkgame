@@ -38,6 +38,8 @@ public class ItemFactory {
         return getPotion(allPotions.get(random.nextInt(allPotions.size())));
     }
 
+    public static WeaponItem randomWeapon(){return getWeapon(allWeapons.get(random.nextInt(allWeapons.size())));}
+
     public static WeaponItem getWeapon(String weapon){
         switch (weapon){
             case "ipad": return new IPad();
