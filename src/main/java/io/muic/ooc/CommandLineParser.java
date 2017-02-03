@@ -1,28 +1,31 @@
 package io.muic.ooc;
 
+import io.muic.ooc.command.Command;
+import io.muic.ooc.command.CommandFactory;
+import io.muic.ooc.command.Info;
+
 public class CommandLineParser  {
-    private final Command command = new Command();
 
     public void parse(String string){
         String[] stringTok = string.split(" ");
         if(stringTok.length == 1){
             switch (stringTok[0]){
-                case "info": command.info(); break;
-                case "help": command.help(); break;
-                case "quit": command.quit(); break;
+                case "info": CommandFactory.getCommand("info").apply(null); break;
+                case "help": CommandFactory.getCommand("help").apply(null); break;
+                case "quit": CommandFactory.getCommand("quit"); break;
                 default:
                     System.out.println("Invalid Command");
             }
 
         }else{
             switch (stringTok[0]){
-                case "take": command.take(parseArg(stringTok, 1));break;
-                case "drop": command.drop(parseArg(stringTok, 1));break;
-                case "use": command.use(parseArg(stringTok, 1));break;
-                case "go": command.go(parseDirection(stringTok[1]));break;
+                case "take": CommandFactory.getCommand("take").apply(parseArg(stringTok,1));break;
+                case "drop": CommandFactory.getCommand("drop").apply(parseArg(stringTok,1));break;
+                case "use": CommandFactory.getCommand("use").apply(parseArg(stringTok,1));break;
+                case "go": CommandFactory.getCommand("go").apply(parseArg(stringTok, 1));break;
                 case "attack": {
                     if(stringTok[1].equals("with")){
-                        command.attackWith(parseArg(stringTok, 2));
+                        CommandFactory.getCommand("attack with").apply(parseArg(stringTok, 2));
                         break;
                     }
                 }
@@ -41,14 +44,6 @@ public class CommandLineParser  {
         return args;
     }
 
-    public Direction parseDirection(String direction){
-        switch (direction){
-            case "north": return Direction.NORTH;
-            case "south": return Direction.SOUTH;
-            case "west": return Direction.WEST;
-            case "east": return Direction.EAST;
-            default: return null;
-        }
-    }
+
 
 }

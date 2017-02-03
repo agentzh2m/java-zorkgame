@@ -5,8 +5,9 @@ import junit.framework.TestCase;
 public class LevelOneTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
-        GameMap.getInstance().loadLevelOne();
+        new ZorkGame();
         Player.getInstance();
+        GameMap.getInstance().loadLevelOne();
     }
 
     public void testIsMove() throws Exception {

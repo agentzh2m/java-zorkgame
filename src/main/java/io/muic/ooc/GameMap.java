@@ -1,14 +1,21 @@
 package io.muic.ooc;
 
+import java.util.Random;
+
 public class GameMap {
     private Room[] rooms;
     private Room currentRoom;
     private GameMap gameMap;
     private int startingRoom = 5;
     private static GameMap ourInstance = new GameMap();
+    private final Random random = ZorkGame.random;
 
     private GameMap() {
         loadLevelOne();
+    }
+
+    public Random getRandom() {
+        return random;
     }
 
     public void move(Direction direction){
@@ -37,7 +44,7 @@ public class GameMap {
 
     public void loadLevelOne(){
         GameMapGenerator gameMapGenerator = new GameMapGenerator();
-        rooms = gameMapGenerator.generateLevelOne(rooms);
+        rooms = gameMapGenerator.generateLevelOne();
         currentRoom = rooms[startingRoom];
         Player.getInstance().pickItem(ItemFactory.getWeapon("water-gun"));
         System.out.println("Objective: \n" +

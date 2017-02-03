@@ -1,8 +1,13 @@
 package io.muic.ooc;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ZorkGame {
+
+    public final static Random random = new Random();
+
+
     public void run(){
         Scanner scanner = new Scanner(System.in);
         CommandLineParser cmd = new CommandLineParser();

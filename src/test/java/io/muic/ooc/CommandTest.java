@@ -1,5 +1,7 @@
 package io.muic.ooc;
 
+import io.muic.ooc.command.Command;
+import io.muic.ooc.command.CommandFactory;
 import junit.framework.TestCase;
 
 public class CommandTest extends TestCase {
@@ -7,44 +9,39 @@ public class CommandTest extends TestCase {
     @Override
     public void setUp() throws Exception{
         super.setUp();
-        GameMap.getInstance().loadLevelOne();
+        GameMap.getInstance();
     }
     public void testTake() throws Exception {
-        Command command = new Command();
-        command.take("Coke");
-        command.take("Coke Zero");
-        command.take("Namthip Water");
+        CommandFactory.getCommand("take").apply("Coke");
+        CommandFactory.getCommand("take").apply("Coke Zero");
+        CommandFactory.getCommand("take").apply("Namthip Water");
     }
 
     public void testDrop() throws Exception {
-        Command command = new Command();
-        command.drop("Coke");
-        command.drop("Coke Zero");
-        command.drop("Namthip Water");
+        CommandFactory.getCommand("drop").apply("Coke");
+        CommandFactory.getCommand("drop").apply("Coke Zero");
+        CommandFactory.getCommand("drop").apply("Namthip Water");
 
     }
 
     public void testUse() throws Exception {
-        Command command = new Command();
-        command.use("Coke");
-        command.use("Chicken");
-        command.use("Namthip Water");
+        CommandFactory.getCommand("use").apply("Coke");
+        CommandFactory.getCommand("use").apply("Coke Zero");
+        CommandFactory.getCommand("use").apply("Namthip Water");
     }
 
     public void testGo() throws Exception {
-        Command command = new Command();
-        command.go(Direction.NORTH);
-        command.go(Direction.WEST);
-        command.go(Direction.EAST);
-        command.go(Direction.SOUTH);
+        CommandFactory.getCommand("go").apply("north");
+        CommandFactory.getCommand("go").apply("south");
+        CommandFactory.getCommand("go").apply("east");
+        CommandFactory.getCommand("go").apply("west");
     }
 
     public void testAttackWith() throws Exception {
-        Command command = new Command();
-        command.attackWith("Water Gun");
-        command.attackWith("No Weapon");
-        command.go(Direction.EAST);
-        command.attackWith("Stapler Gun");
+        CommandFactory.getCommand("attack with").apply("Water Gun");
+        CommandFactory.getCommand("attack with").apply("No Weapon");
+        CommandFactory.getCommand("go").apply("east");
+        CommandFactory.getCommand("attack with").apply("Stapler Gun");
 
     }
 

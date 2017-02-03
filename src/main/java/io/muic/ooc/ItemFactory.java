@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ItemFactory {
-    private final static Random random = new Random();
+    private final static Random random = ZorkGame.random;
     public final static List<String> allPotions =
             new ArrayList<>(Arrays.asList("coke", "coke-light", "coke-zero", "namthip"));
     public final static List<String> allWeapons =

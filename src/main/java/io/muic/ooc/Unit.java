@@ -11,7 +11,7 @@ public abstract class Unit {
     private int attackScore;
     private int health;
     private int maxHealth;
-    protected final Random random = new Random();
+    protected final Random random = ZorkGame.random;
 
     public abstract void attack(Player player);
     public abstract Item dropItem();
