@@ -32,10 +32,11 @@ Other classes is use the break down the huge game process into smaller part to m
 
 Interface Logic:
   1. ZorkGame initialize the game and CommandParser
-  2. You send command to the command parser using the parse command
-  3. After parsing the command the Command will choose the correct command. Command can call the method
-  from the Player or GameMap class. It will call the GameMap class when we need to move the character
-  and the Player class when the player want to use the item or fight against some enemy etc.
+  2. The ComandParser call the correct command from the command factory
+  3. The actual command is it own class that implement the command interface
+
+We decide to use the Command Design pattern because there are a lots of command to progress this help
+break down the logic of the different command. 
 
 This class is separate from the main game logic this help to encapsulate the problem if there is a problem
 with the parser it will not affect the game at all since the command line is the interface the user use to

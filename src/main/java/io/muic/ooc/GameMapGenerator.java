@@ -42,6 +42,7 @@ public class GameMapGenerator {
                     (i > 94 && i < 128 && i%X > 4 && i%Y < 8)){
                 rooms[i] = null;
             }else{
+                rooms[i] = new Room(X,Y,i);
                 if(random.nextDouble() <= MONSTER_PROBABILITY){
                     for (int j = 0; j < random.nextInt(MONSTER_LIMIT); j++) {
                         rooms[i].addUnits(UnitFactory.getUnit("tow-minion"));

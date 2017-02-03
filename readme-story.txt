@@ -41,6 +41,7 @@
   - Tow Minion's (kick 7 dmg 12HP, 35HP) Drop -> (Consumable 50%, Nothing 40%, 10% Drop any weapon)
   - Sea and Ice (Need to rescue the couple from the power the darkness power of cs)
   - Possessed Ice (Last boss before rescuing sea )
+
 2.4 Constraints
 - A player can only hold a maximum number of 4 items.
 - A player have base Health Point (HP) of 100 points.
